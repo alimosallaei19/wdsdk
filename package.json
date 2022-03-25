@@ -1,6 +1,6 @@
 {
   "name": "wdsdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An SDK for alimosallaei19/Watch_Dog.",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,8 @@
     "start": "node index.js"
   },
   "keywords": [
-		"watch_dog"
-	],
+    "watch_dog"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -17,5 +17,5 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.0"
-	}
+  }
 }
