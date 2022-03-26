@@ -48,7 +48,7 @@ exports.send = async (id, msg) => {
 	return t
 }
 
-exports.send = async (id) => {
+exports.close = async (id) => {
 	_checkEnvVariable()
 
 	var t = await fetch(process.env.WD_URL_ROOT, {
