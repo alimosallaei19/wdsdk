@@ -6,16 +6,18 @@ let _checkEnvVariable = () => {
 	}
 }
 
-exports.create = async () => {
+exports.create = async (msg) => {
 	_checkEnvVariable()
 
+	msg = msg || ""
 	var t = await fetch(process.env.WD_URL_ROOT, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify({
-			api: "create"
+			api: "create",
+			status: msg
 		})
 	}).catch(err => {
 		throw new TypeError(err);
@@ -35,7 +37,8 @@ exports.send = async (id, msg) => {
 		},
 		body: JSON.stringify({
 			api: "send",
-			id, msg
+			id: id,
+			msg: msg
 		})
 	}).catch(err => {
 		throw new TypeError(err);
@@ -55,7 +58,7 @@ exports.send = async (id) => {
 		},
 		body: JSON.stringify({
 			api: "close",
-			id
+			id: id
 		})
 	}).catch(err => {
 		throw new TypeError(err);
