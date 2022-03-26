@@ -21,8 +21,8 @@ exports.create = async () => {
 		throw new TypeError(err);
 	})
 
-	t = t.json()
-	return t.json()
+	t = await t.json()
+	return t
 }
 
 exports.send = async (id, msg) => {
@@ -41,8 +41,8 @@ exports.send = async (id, msg) => {
 		throw new TypeError(err);
 	})
 
-	t = t.json()
-	return t.json()
+	t = await t.json()
+	return t
 }
 
 exports.send = async (id) => {
@@ -61,6 +61,6 @@ exports.send = async (id) => {
 		throw new TypeError(err);
 	})
 
-	t = t.json()
-	return t.json()
+	t = await t.json()
+	return t
 }
