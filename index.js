@@ -6,7 +6,7 @@ let _checkEnvVariable = () => {
 	}
 }
 
-exports.create = async (msg) => {
+exports.create = async (msg, ping) => {
 	_checkEnvVariable()
 
 	msg = msg || ""
@@ -17,7 +17,8 @@ exports.create = async (msg) => {
 		},
 		body: JSON.stringify({
 			api: "create",
-			status: msg
+			status: msg,
+			ping: ping || false
 		})
 	}).catch(err => {
 		throw new TypeError(err);
@@ -48,7 +49,7 @@ exports.send = async (id, msg) => {
 	return t
 }
 
-exports.close = async (id) => {
+exports.close = async (id, job) => {
 	_checkEnvVariable()
 
 	var t = await fetch(process.env.WD_URL_ROOT, {
@@ -58,7 +59,8 @@ exports.close = async (id) => {
 		},
 		body: JSON.stringify({
 			api: "close",
-			id: id
+			id: id,
+			job: job || false
 		})
 	}).catch(err => {
 		throw new TypeError(err);
