@@ -1,6 +1,6 @@
 {
   "name": "wdsdk",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An SDK for alimosallaei19/Watch_Dog.",
   "main": "index.js",
   "scripts": {
