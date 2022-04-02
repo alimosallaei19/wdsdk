@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 
 let _checkEnvVariable = () => {
-	if(typeof process.env.WD_URL_ROOT !== "string"){
+	if (typeof process.env.WD_URL_ROOT !== "string") {
 		throw new TypeError('Could not find a WD_URL_ROOT environment variable. Please set it to the root URL of your Watch_Dog instance.')
 	}
 }
@@ -40,6 +40,26 @@ exports.send = async (id, msg) => {
 			api: "send",
 			id: id,
 			msg: msg
+		})
+	}).catch(err => {
+		throw new TypeError(err);
+	})
+
+	t = await t.json()
+	return t
+}
+
+exports.destroy = async (id) => {
+	_checkEnvVariable()
+
+	var t = await fetch(process.env.WD_URL_ROOT, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			api: "destroy",
+			id: id
 		})
 	}).catch(err => {
 		throw new TypeError(err);
