@@ -6,8 +6,17 @@ let _checkEnvVariable = () => {
 	}
 }
 
+let _checkBotStatus = async () => {
+	var t = await fetch(process.env.WD_URL_ROOT + "/bot-status");
+	t = await t.json();
+	return t;
+}
+
 exports.create = async (msg, ping) => {
 	_checkEnvVariable()
+
+	let status = await _checkBotStatus()
+	if(!status) return;
 
 	msg = msg || ""
 	var t = await fetch(process.env.WD_URL_ROOT, {
@@ -31,6 +40,12 @@ exports.create = async (msg, ping) => {
 exports.send = async (id, msg) => {
 	_checkEnvVariable()
 
+	let status = await _checkBotStatus()
+	if(!status) {
+		console.log("FROM wdsdk: " + msg);
+		return;
+	}
+
 	var t = await fetch(process.env.WD_URL_ROOT, {
 		method: "POST",
 		headers: {
@@ -52,6 +67,9 @@ exports.send = async (id, msg) => {
 exports.destroy = async (id) => {
 	_checkEnvVariable()
 
+	let status = await _checkBotStatus()
+	if(!status) return;
+
 	var t = await fetch(process.env.WD_URL_ROOT, {
 		method: "POST",
 		headers: {
@@ -71,6 +89,9 @@ exports.destroy = async (id) => {
 
 exports.close = async (id, job) => {
 	_checkEnvVariable()
+
+	let status = await _checkBotStatus()
+	if(!status) return;
 
 	var t = await fetch(process.env.WD_URL_ROOT, {
 		method: "POST",
