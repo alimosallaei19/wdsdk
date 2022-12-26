@@ -16,7 +16,9 @@ exports.create = async (msg, ping) => {
 	_checkEnvVariable()
 
 	let status = await _checkBotStatus()
-	if(!status) return;
+	if(!status) return {
+					id: "0",
+				};
 
 	msg = msg || ""
 	var t = await fetch(process.env.WD_URL_ROOT, {
